@@ -1,0 +1,2 @@
+module BugcyclesHelper
+end
