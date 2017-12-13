@@ -17,6 +17,9 @@
       - if user_signed_in?
         |
         = link_to 'My bugcycles', bugcycles_url
+    %p
+      - categories.each do |category|
+        = link_to category.category, category_url(category)
     - if flash[:notice]
       %div{class: 'notice'}
         = flash[:notice]

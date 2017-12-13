@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resources :categories, only: :show
+
   resources :bugcycles do
     resources :suggestions, only: [:new, :create]
   end
