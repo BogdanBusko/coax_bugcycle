@@ -38,6 +38,6 @@ class SuggestionsController < ApplicationController
   end
 
   def suggestion_params
-    params.require(:suggestion).permit(:name, :description, :image, :category_id)
+    params.require(:suggestion).permit(:name, :description, :image, :category_id).merge(user_id: current_user.id)
   end
 end

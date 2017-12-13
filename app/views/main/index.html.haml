@@ -13,5 +13,5 @@
     = bugcycle.category.category
     %br
     = image_tag(bugcycle.image.url) if bugcycle.image?
-    - if user_signed_in? && current_user.id != bugcycle.user_id
-      = link_to 'Edit', new_bugcycle_suggestion_url(bugcycle) 
+    - if user_signed_in? && current_user.id != bugcycle.user_id && block_suggestion(bugcycle, current_user.id)
+      = link_to 'Suggestion', new_bugcycle_suggestion_url(bugcycle) 
