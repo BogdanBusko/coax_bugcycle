@@ -8,6 +8,8 @@ end
 gem 'haml-rails'
 gem 'carrierwave'
 gem 'devise'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'jquery-rails'
 
 gem 'rails', '~> 5.1.4'
 gem 'sqlite3'

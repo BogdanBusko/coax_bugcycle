@@ -1,20 +1,100 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
- img {
-   height: 100px;
-   width: 100px;
- }
+body {
+  .nav.navnar-default {
+    .container-fluid {
+      .navbar-header {
+        .navbar-brand {
+          font-size: 28px;
+        }
+      }
+
+      .nav.navbar-nav {
+        margin-left: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .nav.navbar-right { 
+    margin-right: 0px;
+  }
+
+  .registration-form {
+    margin: auto;
+    width: 400px;
+  }
+
+  .row {
+    .col-xs-6.col-md-4 {
+      margin-top: 10px;
+    }
+
+    .thumbnail {
+      height: 550px;
+      padding: 20px;
+    }
+
+    .pre-scrollable {
+      height: 140px;
+      text-align: justify;
+    }
+
+    .name, .category {
+      font-size: 18px;
+    }
+
+    .btn.btn-default, .btn.btn-danger{
+      margin-top: 20px;
+    }
+  }
+
+  .my-bicycles {
+    h1 {
+      text-align: center;
+    }
+
+    .btn-new {
+      margin-left: 15px;
+      width: 100px;
+    }
+  }
+
+  .show-bicycle {
+    h1 {
+      text-align: center;
+    }
+    
+    .col-xs-6 {
+      margin-top: 10px;
+
+      .thumbnail {
+        height: 700px;
+      }
+    }
+  }
+
+  .create-update-bicycle-form {
+    margin: auto;
+    width: 400px;
+
+    #bugcycle_image {
+      visibility: hidden;
+    }
+
+    #bugcycle_description {
+      width: 100%;
+      height: 160px;
+      resize: none;
+    }
+
+    .btn.btn-default.save {
+      padding: 6px 40px;
+    }
+  }
+
+  .suggestions {
+    float: right;
+  }
+}

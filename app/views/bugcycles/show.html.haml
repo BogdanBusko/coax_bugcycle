@@ -1,25 +1,23 @@
-%h1
-  Bugcycle:
-  = @bugcycle.name
-%div
-  = @bugcycle.description
-%div
-  = image_tag(@bugcycle.image.url)
-
-%h1
-  Suggestions
-- if @bugcycle.errors.any?
-  - @bugcycle.errors.full_messages.each do |error|
-    Errors: 
-    = error
-- @bugcycle.suggestions.each do |suggestion|
-  %p
-    Name:
-    = suggestion.name
-    %br
-    Description
-    = suggestion.description
-    %br
-    = image_tag(suggestion.image.url) if suggestion.image?
-    %br
-    = link_to 'Approve', approve_suggestion_url(@bugcycle, suggestion), method: :put
+.text-center
+  %h1
+    Suggestions
+.container-fluid
+  .row
+    .col-xs-6.col-xs-offset-3
+      = link_to 'Delete all!', destroy_all_suggestions_url(@bugcycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' if @bugcycle.suggestions.count > 1
+    - @bugcycle.suggestions.each do |suggestion|
+      .col-xs-6.col-xs-offset-3
+        .thumbnail
+          = image_tag(suggestion.image.url) if suggestion.image?
+          %p.name
+            Bicycle:
+            = suggestion.name
+          %p.category
+            Category:
+            = suggestion.category.category
+          .description
+            Description:
+            .pre-scrollable
+              = suggestion.description
+          = link_to 'Approve', approve_suggestion_url(@bugcycle, suggestion), method: :put, class: 'btn btn-default'
+          = link_to 'Delete', bugcycle_suggestion_url(@bugcycle, suggestion), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

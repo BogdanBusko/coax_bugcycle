@@ -18,6 +18,7 @@ class SuggestionsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     @suggestion = @bugcycle.suggestions.new(suggestion_params)
 
     if @suggestion.save
@@ -28,7 +29,13 @@ class SuggestionsController < ApplicationController
   end
 
   def destroy
+    @bugcycle.suggestions.find(params[:id]).destroy
+    redirect_to bugcycle_url(@bugcycle)
+  end
 
+  def destroy_all
+    @bugcycle.suggestions.delete_all
+    redirect_to bugcycle_url(@bugcycle)
   end
 
   private

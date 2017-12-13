@@ -1,5 +1,6 @@
 class BugcyclesController < ApplicationController
-  before_action :set_bugcycle, only: [:show, :edit, :update, :destroy]  
+  before_action :set_bugcycle, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:new, :edit]
   
   def index
     @bugcycles = current_user.bugcycles.all
@@ -8,7 +9,6 @@ class BugcyclesController < ApplicationController
   def show; end
 
   def new
-    @category = Category.all
     @bugcycle = current_user.bugcycles.new
   end
 
@@ -44,6 +44,10 @@ class BugcyclesController < ApplicationController
 
   def set_bugcycle
     @bugcycle = current_user.bugcycles.find(params[:id])
+  end
+
+  def set_categories
+    @category = Category.all
   end
 
   def bugcycle_params

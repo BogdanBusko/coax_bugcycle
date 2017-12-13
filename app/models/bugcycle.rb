@@ -6,6 +6,7 @@ class Bugcycle < ApplicationRecord
   belongs_to :category
 
   validates :name, uniqueness: true
+  validates :description, length: { minimum: 10 }
 
   mount_uploader :image, ImageUploader
 end

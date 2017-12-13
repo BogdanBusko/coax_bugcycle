@@ -1,16 +1,22 @@
-%h1
-  = @category.category
-- @bugcycles.each do |bugcycle|
-  %p
-    Name:
-    = bugcycle.name
-    %br
-    Description:
-    = bugcycle.description
-    %br
-    Category:
-    = bugcycle.category.category
-    %br
-    = image_tag(bugcycle.image.url) if bugcycle.image?
-    - if user_signed_in? && current_user.id != bugcycle.user_id
-      = link_to 'Edit', new_bugcycle_suggestion_url(bugcycle)
+.text-center
+  %h1
+    = @category.category
+.container-fluid
+  .row
+    - @bugcycles.each do |bugcycle|
+      .col-md-4.col-xs-6
+        .thumbnail
+          = image_tag(bugcycle.image.url) if bugcycle.image?
+          %p.name
+            Name:
+            = bugcycle.name
+          %p.category
+            Category:
+            = bugcycle.category.category
+          .description
+            Description:
+            .pre-scrollable
+              = bugcycle.description
+          .suggestion
+            - if user_signed_in? && current_user.id != bugcycle.user_id && block_suggestion(bugcycle, current_user.id)
+              = link_to 'Suggestion', new_bugcycle_suggestion_url(bugcycle), class: 'btn btn-default'
