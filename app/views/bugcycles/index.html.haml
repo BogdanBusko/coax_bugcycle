@@ -1,0 +1,18 @@
+%h1
+  My Bugcycles
+= link_to 'New', new_bugcycle_url
+- @bugcycles.each do |bugcycle|
+  %p
+    Name:
+    = bugcycle.name
+    %br
+    Description
+    = bugcycle.description
+    %br
+    Category: 
+    = bugcycle.category.category
+    %br
+    = image_tag(bugcycle.image.url) if bugcycle.image?
+    = link_to 'Edit', edit_bugcycle_url(bugcycle)
+    = link_to 'Destroy', bugcycle_url(bugcycle), method: :delete
+    = link_to 'Show', bugcycle_url(bugcycle)

@@ -1,15 +1,22 @@
 class BugcyclesController < ApplicationController
-  before_action :set_bugcycle, only: [:edit, :update, :destroy]  
+  before_action :set_bugcycle, only: [:show, :edit, :update, :destroy]  
   
+  def index
+    @bugcycles = current_user.bugcycles.all
+  end
+
+  def show; end
+
   def new
-    @bugcycle = Bugcycle.new
+    @category = Category.all
+    @bugcycle = current_user.bugcycles.new
   end
 
   def create
-    @bugcycle = Bugcycle.new(bugcycle_params)
+    @bugcycle = current_user.bugcycles.new(bugcycle_params)
 
     if @bugcycle.save
-      redirect_to root_path
+      redirect_to bugcycles_url, notice: 'Successfully created!'
     else 
       render 'new'
     end
@@ -19,7 +26,7 @@ class BugcyclesController < ApplicationController
 
   def update
     if @bugcycle.update_attributes(bugcycle_params)
-      redirect_to root_path
+      redirect_to bugcycles_url, notice: 'Successfully updated!'
     else
       render 'edit'
     end
@@ -27,7 +34,7 @@ class BugcyclesController < ApplicationController
 
   def destroy
     if @bugcycle.destroy
-      redirect_to root_path
+      redirect_to bugcycles_url, notice: 'Successfully destroyed!'
     else
       render 'index'
     end
@@ -36,10 +43,10 @@ class BugcyclesController < ApplicationController
   private
 
   def set_bugcycle
-    @bugcycle = Bugcycle.find(params[:id])
+    @bugcycle = current_user.bugcycles.find(params[:id])
   end
 
   def bugcycle_params
-    params.require(:bugcycle).permit(:name, :description, :image)
+    params.require(:bugcycle).permit(:name, :description, :image, :category_id)
   end
 end

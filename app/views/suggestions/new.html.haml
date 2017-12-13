@@ -1,9 +1,10 @@
-- if @bugcycle.errors.any?
-  - @bugcycle.errors.full_messages.each do |error|
+%h1
+  Suggestion
+- if @suggestion.errors.any?
+  - @suggestion.errors.full_messages.each do |error|
     Errors: 
     = error
-    
-= form_for @bugcycle, html: { multipart: true } do |f|
+= form_for [@bugcycle, @suggestion] do |f|
   %p
     = f.label :name
     %br
@@ -15,11 +16,9 @@
   %p
     = f.label :category_id
     %br
-    = f.collection_select :category_id, @category, :id, :category 
+    = f.collection_select :category_id, @categories, :id, :category
   %p
     = f.label :image
     %br
     = f.file_field :image
   = f.submit
-
-= link_to 'Main page', root_path
