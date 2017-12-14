@@ -36,11 +36,14 @@
           .navbar-brand 
             Bugcycle
         %ul.nav.navbar-nav
-          %li.js-active
+          %li
             = link_to 'Main page', root_url
-          %li.js-active
+          %li
             - if user_signed_in?
               = link_to 'My bicycles', bugcycles_url
+          %li 
+            - if user_signed_in? && current_user.admin?
+              = link_to 'Admin', rails_admin_url
           %li.dropdown
             %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown', role: 'button','aria-haspopup' => 'true', 'aria-expanded' => 'false' } 
               Categories

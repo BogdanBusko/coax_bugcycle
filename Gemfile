@@ -14,6 +14,7 @@ gem 'bootstrap-will_paginate'
 gem 'rails_admin'
 gem 'cancancan'
 gem 'simple_enum'
+gem 'kaminari'
 
 gem 'rails', '~> 5.1.4'
 gem 'sqlite3'

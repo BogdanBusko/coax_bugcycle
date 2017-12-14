@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
   has_many :bugcycles
-  has_many :suggestion
+  has_many :suggestions
 end

@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bugcycles
-  has_many :saggestions
+  has_many :suggestions
 
   as_enum :role, admin: 1, user: 0
 end
