@@ -2,6 +2,11 @@
 @import "bootstrap";
 
 body {
+  #search {
+    margin: 10px auto 0 auto;
+    width: 300px;
+  }
+
   .nav.navnar-default {
     .container-fluid {
       .navbar-header {

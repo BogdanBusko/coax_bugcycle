@@ -6,6 +6,12 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    :javascript
+      document.addEventListener('DOMContentLoaded', function(){
+        document.getElementById('search').addEventListener('keyup', delay(function(){
+          search();
+        }, 500))
+      });
   %body
     .nav.navbar-default
       .container-fluid
@@ -32,3 +38,4 @@
             = link_to 'Sign Up', new_user_registration_url, class: "btn btn-default navbar-btn"
           = button_to 'Sign Out', destroy_user_session_url, method: :delete, class: "btn btn-default navbar-btn" if user_signed_in?
     = yield
+    

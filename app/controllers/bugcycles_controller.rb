@@ -3,7 +3,7 @@ class BugcyclesController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
   
   def index
-    @bugcycles = current_user.bugcycles.all
+    @bugcycles = current_user.bugcycles.where("name LIKE ?", "%#{params[:search]}%")
   end
 
   def show; end

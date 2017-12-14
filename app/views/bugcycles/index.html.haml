@@ -1,27 +1,29 @@
 .my-bicycles
   %h1
     My Bicycles
-  = link_to 'New', new_bugcycle_url, class: 'btn btn-default btn-new'
-  .container-fluid
-    .row
-      - @bugcycles.each do |bugcycle|
-        .col-md-4.col-xs-6
-          .thumbnail
-            = image_tag(bugcycle.image.url) if bugcycle.image?
-            %p.name
-              Bicycle:
-              = bugcycle.name
-            %p.category
-              Category:
-              = bugcycle.category.category
-            .description
-              Description:
-              .pre-scrollable
-                = bugcycle.description
-            = link_to 'Edit', edit_bugcycle_url(bugcycle), class: 'btn btn-default'
-            = link_to 'Destroy', bugcycle_url(bugcycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-            - if bugcycle.suggestions.count > 0
-              = link_to bugcycle_url(bugcycle), { class: 'btn btn-default suggestions' } do
-                Suggestion
-                %span.badge
-                  = bugcycle.suggestions.count
+  %input#search.form-control{ type: 'text', placeholder: 'Search' }
+  .js-bugcycles
+    = link_to 'New', new_bugcycle_url, class: 'btn btn-default btn-new'
+    .container-fluid
+      .row
+        - @bugcycles.each do |bugcycle|
+          .col-md-4.col-xs-6
+            .thumbnail
+              = image_tag(bugcycle.image.url) if bugcycle.image?
+              %p.name
+                Bicycle:
+                = bugcycle.name
+              %p.category
+                Category:
+                = bugcycle.category.category
+              .description
+                Description:
+                .pre-scrollable
+                  = bugcycle.description
+              = link_to 'Edit', edit_bugcycle_url(bugcycle), class: 'btn btn-default'
+              = link_to 'Destroy', bugcycle_url(bugcycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+              - if bugcycle.suggestions.count > 0
+                = link_to bugcycle_url(bugcycle), { class: 'btn btn-default suggestions' } do
+                  Suggestion
+                  %span.badge
+                    = bugcycle.suggestions.count

@@ -3,6 +3,6 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
-    @bugcycles = @category.bugcycles
+    @bugcycles = @category.bugcycles.where("name LIKE ?", "%#{params[:search]}%")
   end
 end

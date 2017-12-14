@@ -9,4 +9,6 @@ class Bugcycle < ApplicationRecord
   validates :description, length: { minimum: 10 }
 
   mount_uploader :image, ImageUploader
+
+  scope :search, -> search { where('name LIKE ? or description LIKE ?', "%#{search}%", "%#{search}%") }
 end
