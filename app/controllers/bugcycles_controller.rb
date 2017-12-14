@@ -3,10 +3,12 @@ class BugcyclesController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
   
   def index
+    used = current_user.useds
+
     if params[:search]
-      @bugcycles = current_user.bugcycles.search(params[:search]).paginate(page: params[:page], per_page: 12)
+      @bugcycles = current_user.bugcycles.not_used(used).search(params[:search]).paginate(page: params[:page], per_page: 12)
     else
-      @bugcycles = current_user.bugcycles.paginate(page: params[:page], per_page: 12)
+      @bugcycles = current_user.bugcycles.not_used(used).paginate(page: params[:page], per_page: 12)
     end
   end
 
@@ -20,7 +22,7 @@ class BugcyclesController < ApplicationController
     @bugcycle = current_user.bugcycles.new(bugcycle_params)
 
     if @bugcycle.save
-      redirect_to bugcycles_url, notice: 'Successfully created!'
+      redirect_to bugcycles_url
     else 
       render 'new'
     end
@@ -30,7 +32,7 @@ class BugcyclesController < ApplicationController
 
   def update
     if @bugcycle.update_attributes(bugcycle_params)
-      redirect_to bugcycles_url, notice: 'Successfully updated!'
+      redirect_to bugcycles_url
     else
       render 'edit'
     end
@@ -38,7 +40,7 @@ class BugcyclesController < ApplicationController
 
   def destroy
     if @bugcycle.destroy
-      redirect_to bugcycles_url, notice: 'Successfully destroyed!'
+      redirect_to bugcycles_url
     else
       render 'index'
     end

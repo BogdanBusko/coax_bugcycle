@@ -21,6 +21,7 @@
                 .pre-scrollable
                   = bugcycle.description
               = link_to 'Edit', edit_bugcycle_url(bugcycle), class: 'btn btn-default'
+              = link_to 'Used', used_url(bugcycle, bugcycles_url), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
               = link_to 'Destroy', bugcycle_url(bugcycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
               - if bugcycle.suggestions.count > 0
                 = link_to bugcycle_url(bugcycle), { class: 'btn btn-default suggestions' } do
