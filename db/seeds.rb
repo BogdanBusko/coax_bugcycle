@@ -5,7 +5,8 @@ Category.create(category: 'Sport')
 
 User.create(
   email: 'busko.bogdan@gmail.com',
-  password: '123456'
+  password: '123456',
+  role: :admin
 )
 
 20.times do
