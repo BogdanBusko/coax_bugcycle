@@ -27,3 +27,5 @@
                   Suggestion
                   %span.badge
                     = bugcycle.suggestions.count
+                    
+= will_paginate @bugcycles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

@@ -10,8 +10,25 @@
       document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('search').addEventListener('keyup', delay(function(){
           search();
-        }, 500))
+        }, 500));
+
+        $('.page-link').on('click', function() {
+          $(this).attr('href', function(){
+            link = document.location.search;
+            newLink = '';
+        
+            if(link.includes('search')) {
+              var url = link.split('&');
+              newLink = this.href + '&' + url[1]
+            } else {
+              newLink = this.href;
+            }
+        
+            return newLink;
+          });
+        });
       });
+      
   %body
     .nav.navbar-default
       .container-fluid

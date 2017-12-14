@@ -19,3 +19,4 @@
             .suggestion
               - if user_signed_in? && current_user.id != bugcycle.user_id && block_suggestion(bugcycle, current_user.id)
                 = link_to 'Suggestion', new_bugcycle_suggestion_url(bugcycle), class: 'btn btn-default' 
+= will_paginate @bugcycles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

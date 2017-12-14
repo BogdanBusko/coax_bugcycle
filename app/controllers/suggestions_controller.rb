@@ -6,7 +6,7 @@ class SuggestionsController < ApplicationController
 
     if @bugcycle.update_attributes(suggestion.attributes.except('id', 'bugcycle_id', 'user_id'))
       suggestion.destroy
-      redirect_to bugcycle_url(@bugcycle), notice: 'Suggestion apply...'
+      redirect_to bugcycles_url
     else
       redirect_to bugcycle_url(@bugcycle)
     end

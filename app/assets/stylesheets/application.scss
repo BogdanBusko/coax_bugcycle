@@ -7,6 +7,15 @@ body {
     width: 300px;
   }
 
+  img {
+    max-height: 210px;
+    max-width: 375px;
+    min-height: 210px;
+    min-width: 375px;
+
+    background-size: cover;
+  }
+
   .nav.navnar-default {
     .container-fluid {
       .navbar-header {
@@ -66,25 +75,15 @@ body {
     }
   }
 
-  .show-bicycle {
-    h1 {
-      text-align: center;
-    }
-    
-    .col-xs-6 {
-      margin-top: 10px;
-
-      .thumbnail {
-        height: 700px;
-      }
-    }
-  }
-
   .create-update-bicycle-form {
     margin: auto;
     width: 400px;
 
     #bugcycle_image {
+      visibility: hidden;
+    }
+
+    #suggestion_image {
       visibility: hidden;
     }
 
@@ -98,7 +97,7 @@ body {
       padding: 6px 40px;
     }
   }
-
+  
   .suggestions {
     float: right;
   }

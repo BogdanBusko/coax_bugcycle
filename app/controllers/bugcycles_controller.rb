@@ -3,7 +3,11 @@ class BugcyclesController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
   
   def index
-    @bugcycles = current_user.bugcycles.where("name LIKE ?", "%#{params[:search]}%")
+    if params[:search]
+      @bugcycles = current_user.bugcycles.search(params[:search]).paginate(page: params[:page], per_page: 12)
+    else
+      @bugcycles = current_user.bugcycles.paginate(page: params[:page], per_page: 12)
+    end
   end
 
   def show; end

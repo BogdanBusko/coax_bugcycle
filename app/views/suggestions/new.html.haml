@@ -1,24 +1,31 @@
-%h1
-  Suggestion
-- if @suggestion.errors.any?
-  - @suggestion.errors.full_messages.each do |error|
-    Errors: 
-    = error
-= form_for [@bugcycle, @suggestion] do |f|
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.label :description
-    %br
-    = f.text_area :description
-  %p
-    = f.label :category_id
-    %br
-    = f.collection_select :category_id, @categories, :id, :category
-  %p
-    = f.label :image
-    %br
-    = f.file_field :image
-  = f.submit
+.create-update-bicycle-form
+  .text-center
+    %h1
+      Suggestion
+    = form_for [@bugcycle, @suggestion], html: { multipart: true } do |f|
+      .form-group
+        = f.label :name
+        %br
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :description
+        %br
+        = f.text_area :description, class: 'form-control'
+      .form-group
+        = f.label :category_id
+        %br
+        = f.collection_select :category_id, @categories, :id, :category, {}, { class: 'form-control' }
+      .form-group
+        .input-group
+          %span.input-group-btn
+            = f.label :image, class: 'btn btn-default btn-file js-load-image'
+          %span#image-url.form-control
+        = f.file_field :image
+      = f.submit 'Save', {class: 'btn btn-default save'}
+      :javascript
+        $(document).ready(function(){
+          $('#suggestion_image').change(function(e){
+            var value = e.target.files[0].name;
+            $('#image-url').text(value);
+          });
+        })

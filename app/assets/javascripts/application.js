@@ -25,19 +25,26 @@ function delay(fn, duration) {
 
 function search() {
   var xhr = new XMLHttpRequest();
+  var search = document.location.search;
+  var path = document.location.pathname;
+  var element = document.getElementsByClassName('js-bugcycles');
+  var url = search.split('&');
 
-  if (document.getElementById('search').value != '') {
-    history.pushState({}, null, '?search='+document.getElementById('search').value);
-  } else {
+  if (search.includes('page') && document.getElementById('search').value != '') {
+    url[1] = 'search=' + document.getElementById('search').value;
+    history.pushState({}, null, url[0] + '&' + url[1]);
+  } else if (!search.includes('page') && document.getElementById('search').value != '') {
+    history.pushState({}, null, '?search=' + document.getElementById('search').value);
+  } else if (search.includes('page') && document.getElementById('search').value == '') {
+    var url = document.location.search.split('&');
+    history.pushState({}, null, url[0]);
+  } else { 
     history.pushState({}, null, document.location.pathname);
   }
 
-  var path = document.location.pathname;
-  var search = document.location.search;
-  var element = document.getElementsByClassName('js-bugcycles');
+  var url = document.location.pathname + document.location.search;
 
-  xhr.open('GET',  path + search, true);
-
+  xhr.open('GET',  url, true);
   xhr.send();
 
   xhr.onreadystatechange = function() {

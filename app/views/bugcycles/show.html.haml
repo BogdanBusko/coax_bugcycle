@@ -3,10 +3,10 @@
     Suggestions
 .container-fluid
   .row
-    .col-xs-6.col-xs-offset-3
+    .col-xs-4.col-xs-offset-4
       = link_to 'Delete all!', destroy_all_suggestions_url(@bugcycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' if @bugcycle.suggestions.count > 1
     - @bugcycle.suggestions.each do |suggestion|
-      .col-xs-6.col-xs-offset-3
+      .col-xs-4.col-xs-offset-4
         .thumbnail
           = image_tag(suggestion.image.url) if suggestion.image?
           %p.name
