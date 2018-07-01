@@ -5,7 +5,7 @@
       - @bugcycles.each do |bugcycle|
         .col-md-4.col-xs-6
           .thumbnail
-            = image_tag(bugcycle.image.url) if bugcycle.image?
+            = image_tag(bugcycle.image.medium_image) if bugcycle.image?
             %p.name
               Name:
               = bugcycle.name

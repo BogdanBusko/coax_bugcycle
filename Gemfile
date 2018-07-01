@@ -15,6 +15,7 @@ gem 'rails_admin'
 gem 'cancancan'
 gem 'simple_enum'
 gem 'kaminari'
+gem 'mini_magick'
 
 gem 'rails', '~> 5.1.4'
 gem 'sqlite3'
