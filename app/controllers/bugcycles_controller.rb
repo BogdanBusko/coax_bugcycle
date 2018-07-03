@@ -1,7 +1,6 @@
 class BugcyclesController < ApplicationController
   before_action :set_bugcycle, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:new, :edit]
-  
+
   def index
     used = current_user.useds
 
@@ -15,15 +14,15 @@ class BugcyclesController < ApplicationController
   def show; end
 
   def new
-    @bugcycle = current_user.bugcycles.new
+    @bugcycle = Bugcycle.new
   end
 
   def create
-    @bugcycle = current_user.bugcycles.new(bugcycle_params)
+    @bugcycle = Bugcycle.new(bugcycle_params)
 
     if @bugcycle.save
       redirect_to bugcycles_url
-    else 
+    else
       render 'new'
     end
   end
@@ -46,17 +45,22 @@ class BugcyclesController < ApplicationController
     end
   end
 
+  def used
+    Used.create(bugcycle_id: params[:id], user_id: current_user.id)
+    redirect_to params[:url]
+  end
+
+  def by_category
+    @bugcycles = Bugcycle.where(category_id: params[:category_id])
+  end
+
   private
 
   def set_bugcycle
-    @bugcycle = current_user.bugcycles.find(params[:id])
-  end
-
-  def set_categories
-    @category = Category.all
+    @bugcycle = Bugcycle.find(params[:id])
   end
 
   def bugcycle_params
-    params.require(:bugcycle).permit(:name, :description, :image, :category_id)
+    params.require(:bugcycle).permit(:name, :description, :image, :category_id).merge(user_id: current_user.id)
   end
 end

@@ -1,8 +1,8 @@
 .create-update-bicycle-form
   - if @bugcycle.errors.any?
     - @bugcycle.errors.full_messages.each do |error|
-      Errors: 
-      = error 
+      Errors:
+      = error
   = form_for @bugcycle, html: { multipart: true } do |f|
     .form-group
       = f.label :name
@@ -15,7 +15,7 @@
     .form-group
       = f.label :category_id
       %br
-      = f.collection_select :category_id, @category, :id, :category, {}, { class: 'form-control' }
+      = f.collection_select :category_id, categories, :id, :category, {}, { class: 'form-control' }
     .form-group
       .input-group
         %span.input-group-btn

@@ -1,7 +1,7 @@
 require 'faker'
 
-Category.create(category: 'Mountaine')
-Category.create(category: 'Sport')
+Category.create(name: 'Mountaine')
+Category.create(name: 'Sport')
 
 User.create(
   email: 'pierre@michaux.com',

@@ -11,13 +11,13 @@
               = bugcycle.name
             %p.category
               Category:
-              = bugcycle.category.category
+              = bugcycle.category.name
             .description
               Description:
               .pre-scrollable
                 = bugcycle.description
             - if user_signed_in?
-              = link_to 'Used', used_url(bugcycle, root_url), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
+              = link_to 'Used', used_bugcycle_url(bugcycle, root_url), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
             - if user_signed_in? && current_user.id != bugcycle.user_id && block_suggestion(bugcycle, current_user.id)
               = link_to 'Suggestion', new_bugcycle_suggestion_url(bugcycle), class: 'btn btn-default'
 = will_paginate @bugcycles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

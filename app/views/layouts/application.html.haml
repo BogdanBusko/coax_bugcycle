@@ -16,24 +16,24 @@
           $(this).attr('href', function(){
             link = document.location.search;
             newLink = '';
-        
+
             if(link.includes('search')) {
               var url = link.split('&');
               newLink = this.href + '&' + url[1]
             } else {
               newLink = this.href;
             }
-        
+
             return newLink;
           });
         });
       });
-      
+
   %body
     .nav.navbar-default
       .container-fluid
         .navbar-header
-          .navbar-brand 
+          .navbar-brand
             Bugcycle
         %ul.nav.navbar-nav
           %li
@@ -41,21 +41,20 @@
           %li
             - if user_signed_in?
               = link_to 'My bicycles', bugcycles_url
-          %li 
+          %li
             - if user_signed_in? && current_user.admin?
               = link_to 'Admin', rails_admin_url
           %li.dropdown
-            %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown', role: 'button','aria-haspopup' => 'true', 'aria-expanded' => 'false' } 
+            %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown', role: 'button','aria-haspopup' => 'true', 'aria-expanded' => 'false' }
               Categories
               %span.caret
             %ul.dropdown-menu
               - categories.each do |category|
                 %li
-                  = link_to category.category, category_url(category)
+                  = link_to category.name, bugcycles_by_category_url(category.name ,category.id)
         .nav.navbar-right
           - if !user_signed_in?
             = link_to 'Sign In', new_user_session_url, class: "btn btn-default navbar-btn"
             = link_to 'Sign Up', new_user_registration_url, class: "btn btn-default navbar-btn"
           = button_to 'Sign Out', destroy_user_session_url, method: :delete, class: "btn btn-default navbar-btn" if user_signed_in?
     = yield
-    

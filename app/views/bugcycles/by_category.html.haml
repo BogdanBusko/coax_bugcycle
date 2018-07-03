@@ -1,6 +1,6 @@
 .text-center
   %h1
-    = @category.category
+    = params[:category_name]
 %input#search.form-control{ type: 'text', placeholder: 'Search' }
 .js-bugcycles
   .container-fluid
@@ -14,7 +14,7 @@
               = bugcycle.name
             %p.category
               Category:
-              = bugcycle.category.category
+              = bugcycle.category.name
             .description
               Description:
               .pre-scrollable

@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
   before_action :set_bugcycle
-  
+
   def approve
     suggestion = Suggestion.find(params[:suggestion_id])
 
@@ -18,7 +18,6 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    @categories = Category.all
     @suggestion = @bugcycle.suggestions.new(suggestion_params)
 
     if @suggestion.save

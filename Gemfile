@@ -7,7 +7,7 @@ end
 
 gem 'haml-rails'
 gem 'carrierwave'
-gem 'devise'
+gem 'devise', '4.4.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'bootstrap-will_paginate'
